@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}6. Parent / Guardian Portal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark mb-1">Parent / Guardian Communication Log</h2>
+        <p class="text-muted mb-0">Review student performance logs shared with parents and guardians</p>
+    </div>
+    <div class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-bold">
+        <i class="bi bi-shield-lock-fill me-1"></i> Active Session: Educator
+    </div>
+</div>
+
+<div class="light-card p-4">
+    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-chat-heart text-primary me-2"></i>Guardian Tracking Portal Overview</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr><th>Student Name</th><th>Module Area</th><th>Score</th><th>Status & Remarks</th></tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td class="fw-bold text-dark">{{ r[1] }}</td>
+                    <td>{{ r[4] }}</td>
+                    <td><span class="fw-bold {% if r[6] >= 75 %}text-success{% else %}text-danger{% endif %}">{{ r[6] }}%</span></td>
+                    <td>
+                        {% if r[6] >= 75 %}
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Passed</span>
+                        {% else %}
+                            <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">Remediation Needed</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="4" class="text-center text-muted py-4">No communication records logged.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Tracker Module{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark mb-1">Academic File Tracking: <span style="color: #4f46e5;">{{ student_name }}</span></h2>
+        <p class="text-muted mb-0">Central repository tracking performance metrics and assessment logs</p>
+    </div>
+    <button class="btn btn-primary px-3 rounded-3 shadow-sm" style="background-color: #4f46e5; border: none;" onclick="window.print()">
+        <i class="bi bi-printer me-1"></i> Print / Export Report
+    </button>
+</div>
+
+<div class="light-card p-4">
+    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-folder2-open text-primary me-2"></i>Assessment Records & Logs</h5>
+    <div class="table-responsive">
+        <table class="table align-middle" id="recordsTable">
+            <thead class="table-light">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Year & Section</th>
+                    <th>Module Area</th>
+                    <th>Assessment Type</th>
+                    <th>Score</th>
+                    <th>Remarks</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td class="fw-bold text-dark">{{ r[1] }}</td>
+                    <td>{{ r[2] }} - {{ r[3] }}</td>
+                    <td>{{ r[4] }}</td>
+                    <td><span class="badge bg-light text-primary border">{{ r[5] }}</span></td>
+                    <td><span class="fw-bold {% if r[6] >= 75 %}text-success{% else %}text-danger{% endif %}">{{ r[6] }}%</span></td>
+                    <td>
+                        {% if r[6] >= 75 %}
+                            <span class="badge badge-passed px-2 py-1">Passed</span>
+                        {% else %}
+                            <span class="badge badge-remediation px-2 py-1">Remediation</span>
+                        {% endif %}
+                        <div class="small text-muted">{{ r[7] }}</div>
+                    </td>
+                    <td>{{ r[8] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">No tracking records available for this account.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

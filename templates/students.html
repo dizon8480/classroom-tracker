@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}2. Student Profiler & Tracking{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark mb-1">Student Profiler & Tracking</h2>
+        <p class="text-muted mb-0">Manage student enrollment profiles and record logs</p>
+    </div>
+    <div class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-bold">
+        <i class="bi bi-shield-lock-fill me-1"></i> Active Session: Educator
+    </div>
+</div>
+
+<div class="light-card p-4 mb-4">
+    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-plus-fill text-primary me-2"></i>Add / Update Student Profile</h5>
+    <form method="POST" autocomplete="off">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Full Name</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g., Juan Cruz" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Year Level</label>
+                <select name="year_level" class="form-select" required>
+                    <option value="" disabled selected>Select Year Level</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label small fw-bold text-secondary">BSIT Regular Section</label>
+                <select name="regular_section" class="form-select">
+                    <option value="" selected>None / Select Section</option>
+                    <option value="BSIT-1A">BSIT-1A</option>
+                    <option value="BSIT-1B">BSIT-1B</option>
+                    <option value="BSIT-2A">BSIT-2A</option>
+                    <option value="BSIT-2B">BSIT-2B</option>
+                    <option value="BSIT-3A">BSIT-3A</option>
+                    <option value="BSIT-3B">BSIT-3B</option>
+                    <option value="BSIT-3C">BSIT-3C</option>
+                    <option value="BSIT-4A">BSIT-4A</option>
+                    <option value="BSIT-4B">BSIT-4B</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label small fw-bold text-secondary">Official Trimester Code</label>
+                <select name="trimester_code" class="form-select">
+                    <option value="" selected>None / Select Code</option>
+                    <option value="OLCA311N072">OLCA311N072</option>
+                    <option value="OLCA311M001">OLCA311M001</option>
+                    <option value="OLCA311A023">OLCA311A023</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label small fw-bold text-secondary">Special Section</label>
+                <select name="special_section" class="form-select">
+                    <option value="" selected>None / Select Section</option>
+                    <option value="BSIT-3E1">BSIT-3E1</option>
+                    <option value="BSIT-3E2">BSIT-3E2</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Curriculum Module / Subject Area</label>
+                <select name="module_area" class="form-select" required>
+                    <option value="" disabled selected>Select Subject Area</option>
+                    <optgroup label="Core Programming & DB">
+                        <option value="Object-Oriented Programming">Object-Oriented Programming</option>
+                        <option value="Advanced Database System">Advanced Database System</option>
+                        <option value="Data Structures & Algorithms">Data Structures & Algorithms</option>
+                        <option value="Information Management">Information Management</option>
+                    </optgroup>
+                    <optgroup label="Systems & Architecture">
+                        <option value="Systems Integration & Architecture 1">Systems Integration & Architecture 1</option>
+                        <option value="Systems Analysis & Design">Systems Analysis & Design</option>
+                        <option value="Operating Systems">Operating Systems</option>
+                        <option value="Computer Networking">Computer Networking</option>
+                    </optgroup>
+                    <optgroup label="Professional & Ethics">
+                        <option value="Social Issues and Professional Practice 2">Social Issues and Professional Practice 2</option>
+                        <option value="Information Assurance & Security">Information Assurance & Security</option>
+                        <option value="Capstone Project 1">Capstone Project 1</option>
+                        <option value="Capstone Project 2">Capstone Project 2</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Assessment Type</label>
+                <select name="assessment_type" class="form-select" required>
+                    <option value="" disabled selected>Select Assessment Type</option>
+                    <optgroup label="Pre-Tests">
+                        {% for i in range(1, 13) %}<option value="Pre-test {{ i }}">Pre-test {{ i }}</option>{% endfor %}
+                    </optgroup>
+                    <optgroup label="Post-Tests">
+                        {% for i in range(1, 13) %}<option value="Post-test {{ i }}">Post-test {{ i }}</option>{% endfor %}
+                    </optgroup>
+                    <optgroup label="Activities">
+                        {% for i in range(1, 6) %}<option value="Activity {{ i }}">Activity {{ i }}</option>{% endfor %}
+                    </optgroup>
+                    <optgroup label="Projects & Exams">
+                        <option value="Project Prelim">Project Prelim</option>
+                        <option value="Project Midterm">Project Midterm</option>
+                        <option value="Project Final">Project Final</option>
+                        <option value="Exam">Exam</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Score (%)</label>
+                <input type="number" step="0.1" name="score" class="form-control" placeholder="e.g., 88.5" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small fw-bold text-secondary">Learning Plan / Remarks</label>
+                <input type="text" name="remarks" class="form-control" placeholder="e.g., Passed with honors" required>
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label small fw-bold text-secondary">Date Recorded</label>
+                <input type="date" name="date" class="form-control" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-4 rounded-3" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border:none; padding:12px; font-weight:700;">
+            <i class="bi bi-save me-1"></i> Save Student Profile
+        </button>
+    </form>
+</div>
+
+<div class="light-card p-4">
+    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-table text-secondary me-2"></i>Registered Student Records</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Year & Section</th>
+                    <th>Module Area</th>
+                    <th>Assessment</th>
+                    <th>Score</th>
+                    <th>Remarks</th>
+                    <th>Date Recorded</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{ s[0] }}</td>
+                    <td class="fw-bold text-dark">{{ s[1] }}</td>
+                    <td>{{ s[2] }} - {{ s[3] }}</td>
+                    <td>{{ s[4] }}</td>
+                    <td><span class="badge bg-light text-primary border">{{ s[5] }}</span></td>
+                    <td><span class="fw-bold {% if s[6] >= 75 %}text-success{% else %}text-danger{% endif %}">{{ s[6] }}%</span></td>
+                    <td><small class="text-muted">{{ s[7] }}</small></td>
+                    <td>{{ s[8] }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="8" class="text-center text-muted py-4">No records logged yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

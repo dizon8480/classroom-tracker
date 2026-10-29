@@ -1,0 +1,74 @@
+body {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1e1b4b;
+    color: white;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.main-content {
+    margin-left: 280px;
+    padding: 30px;
+}
+
+.hover-link {
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+    color: #cbd5e1 !important;
+}
+
+.hover-link:hover {
+    background-color: rgba(139, 92, 246, 0.25);
+    color: #ffffff !important;
+    transform: translateX(4px);
+}
+
+.active-pill {
+    background-color: #8b5cf6 !important;
+    border-radius: 12px;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.light-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    padding: 10px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.badge-passed {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+    font-weight: 600;
+}
+
+.badge-remediation {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    font-weight: 600;
+}

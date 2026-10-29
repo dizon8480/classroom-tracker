@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}7. Actionable Insights{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark mb-1">Actionable Insights & Intervention Flags</h2>
+        <p class="text-muted mb-0">Identify students requiring academic remediation and intervention planning</p>
+    </div>
+    <div class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 rounded-pill fw-bold">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i> Threshold: Below 75%
+    </div>
+</div>
+
+<div class="light-card p-4 border-danger border-opacity-25">
+    <h5 class="fw-bold text-danger mb-3"><i class="bi bi-flag-fill me-2"></i>Intervention Flags (Students Requiring Support)</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr><th>Student Name</th><th>Section</th><th>Module Area</th><th>Score</th><th>Recommended Action</th></tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td class="fw-bold text-dark">{{ r[1] }}</td>
+                    <td>{{ r[3] }}</td>
+                    <td>{{ r[4] }}</td>
+                    <td><span class="fw-bold text-danger">{{ r[6] }}%</span></td>
+                    <td><span class="badge bg-warning text-dark border border-warning px-2 py-1">Schedule Remediation Retest</span></td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5" class="text-center text-success py-4"><i class="bi bi-check-circle-fill me-1"></i> All students are currently above the passing threshold!</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
